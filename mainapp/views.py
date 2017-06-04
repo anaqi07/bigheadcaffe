@@ -197,3 +197,23 @@ def editSyrup(request, syrup_id):
 def deleteSyrup(request, syrup_id):
     Syrup.objects.get(id=syrup_id).delete()
     return redirect("home")
+
+def createOrder(request,coffee_id):
+    context={}
+    coffee=Coffee.objects.get(id=coffee_id)
+    context['coffee']=coffee
+    if request.method=='POST':
+        form=OrderForm(request.POST)
+        context['form']=form
+        if form.is_valid():
+            order=form.save(commit=False)
+            order.user=request.user
+            order.coffee=coffee
+            form.save()
+            return redirect("home")
+        else:
+            return render(request, 'createOrder.html',context)
+    else:
+        form=OrderForm()
+        context['form']=form
+        return render(request, 'createOrder.html', context)
