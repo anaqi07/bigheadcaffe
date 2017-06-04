@@ -1,8 +1,18 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 
-<html>
+{% block header %} Edit Coffee {% endblock %}
+
+{% block content %}
+<form class="" action="{% url 'editcoffee' coffee_id=coffee.id %}" method="POST">
+  {% csrf_token %}
+  {{form|crispy}}
+  <input type="submit" name="" value="Edit">
+</form>
+{% endblock %}
+
+<!-- <html>
   <head>
     <meta charset="utf-8">
     <title>Edit Coffee</title>
@@ -17,4 +27,4 @@
   </body>
   <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
-</html>
+</html> -->
