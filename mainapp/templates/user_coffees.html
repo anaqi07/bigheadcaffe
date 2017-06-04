@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User Coffees</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <h1>{{user}}<h1>
+      </div>
+      <div class="row">
+          {% for coffee in coffees %}
+            <div class="col col-sm-3">{{coffee}}</div>
+          {% endfor %}
+      </div>
+    </div>
+  </body>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</html>
