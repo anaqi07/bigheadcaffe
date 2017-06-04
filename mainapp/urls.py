@@ -20,5 +20,7 @@ urlpatterns = [
 
     url(r'^createsyrup/$', createSyrup, name='createsyrup'),
     url(r'^editsyrup/(?P<syrup_id>[0-9]+)/$', editSyrup, name='editsyrup'),
-    url(r'^deletesyrup/(?P<syrup_id>[0-9]+)/$', deleteSyrup, name='deletesyrup'),
+
+    url(r'^createorder/(?P<coffee_id>[0-9]+)/$', createOrder, name='createorder'),
+
 ]
