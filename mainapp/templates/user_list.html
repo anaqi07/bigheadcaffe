@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>User List</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+          {% for user in user_list %}
+            <a href="{% url 'user_coffees' user_id=user.id %}"><div class="col col-sm-3">{{user}}</div></a>
+          {% endfor %}
+      </div>
+    </div>
+  </body>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</html>
