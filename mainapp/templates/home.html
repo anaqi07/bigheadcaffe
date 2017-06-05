@@ -6,45 +6,62 @@
 
 {% block content %}
 <div class="row">
-  <h1>Date: {{today}}</h1>
-  <hr />
-  {% for order in order_list %}
-      <div class="row">
-        <div class="col-sm-4 col-md-3">
-      <div class="thumbnail">
-        <!-- <img src="..." alt="..."> -->
-        <div class="caption">
-          <h3 class="text-center">{{order.coffee}}</h3>
-          <!-- <p>{{order.coffee.syrup}}</p> -->
-        </div>
-      </div>
+  <div class="col col-sm-6">
+    <h1>Date: {{today}}</h1>
+  </div>
+  <div class="col col-sm-6">
+    <form class="" action="{% url 'home' %}" method="POST">
+      {% csrf_token %}
+      {{form}}
+      <input type="submit" name="" value="Filter" />
+    </form>
+  </div>
+</div>
+
+<hr />
+
+<div class="row">
+  {% if order_list %}
+      {% for order in order_list %}
+            <div class="col col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <!-- <img src="..." alt="..."> -->
+                    <div class="caption">
+                        <h3 class="text-center">{{order.coffee}}</h3>
+                          <!-- <p>{{order.coffee.syrup}}</p> -->
+                    </div>
+                </div>
+            </div>
+      {% endfor %}
+    {% else %}
+      <h3 style="color:red" >No Result..</h3>
+    {% endif%}
     </div>
-    </div>
-  {% endfor %}
 </div>
 <hr />
 <div class="row">
   <h1>Customized Coffee</h1>
   {% for coffee in coffee_list %}
       <div class="row">
-        <div class="col-sm-4 col-md-3">
-      <div class="thumbnail">
-        <!-- <img src="..." alt="..."> -->
-        <div class="caption">
-          <h3>{{coffee}}</h3>
-          <p>...</p>
-          <p>
-            <a href="{% url 'editcoffee' coffee_id=coffee.id %}" class="btn btn-primary" role="button">Edit</a>
-            <a href="{% url 'deletecoffee' coffee_id=coffee.id %}" class="btn btn-default" role="button">Delete</a>
-            <a href="{% url 'createorder' coffee_id=coffee.id %}" class="btn btn-default" role="button">Add Order</a>
-          </p>
+        <div class="col col-sm-6 col-md-4">
+          <div class="thumbnail">
+                <!-- <img src="..." alt="..."> -->
+                <div class="caption">
+                  <h3>{{coffee}}</h3>
+                  <p>...</p>
+                  <p>
+                    <a href="{% url 'editcoffee' coffee_id=coffee.id %}" class="btn btn-primary" role="button">Edit</a>
+                    <a href="{% url 'deletecoffee' coffee_id=coffee.id %}" class="btn btn-default" role="button">Delete</a>
+                    <a href="{% url 'createorder' coffee_id=coffee.id %}" class="btn btn-default" role="button">Add Order</a>
+                  </p>
+                </div>
+              </div>
         </div>
-      </div>
-    </div>
     </div>
   {% endfor %}
 
   <a href="{% url 'createcoffee' %}" class="btn btn-primary" role="button">Customize you Coffee</a>
+  <br /><br />
 </div>
 
 {% endblock %}
