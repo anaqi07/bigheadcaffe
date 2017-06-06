@@ -5,6 +5,7 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'user_list/$', user_list, name='user_list'),
     url(r'^user_coffees/(?P<user_id>[0-9]+)/$', user_coffees, name='user_coffees'),
+    url(r'^send_order_email/(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})/$', send_order_email, name='send_order_email'),
 
     url(r'^createcoffee/$', createCoffee, name='createcoffee'),
     url(r'^editcoffee/(?P<coffee_id>[0-9]+)/$', editCoffee, name='editcoffee'),
