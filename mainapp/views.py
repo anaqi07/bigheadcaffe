@@ -271,3 +271,24 @@ def send_order_email(request, year, month, day):
         message +="%s, "%(order.coffee)
     send_mail(subject, message , settings.EMAIL_HOST_USER, ['a.naqi.07@hotmail.com'])
     return redirect('home')
+
+def replicate_order(request, year, month, day):
+    context={}
+    date=datetime.datetime.strptime('%s%s%s'%(year, month, day),"%Y%m%d").date()
+    context['today']=date
+    order_list=Order.objects.filter(user=request.user, date=date)
+    if request.method=="POST":
+        form =SearchForm(request.POST)
+        context['form']=form
+        if form.is_valid():
+            obj=form.cleaned_data['date']
+            for order in order_list:
+                new_order=Order(user=order.user, coffee=order.coffee, date=obj)
+                new_order.save()
+            return redirect("home")
+        else:
+            return render(request,'replicate_order.html', context)
+    else:
+        form =SearchForm()
+        context['form']=form
+    return render(request,'replicate_order.html', context)
