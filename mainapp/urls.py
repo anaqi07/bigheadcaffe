@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^user_coffees/(?P<user_id>[0-9]+)/$', user_coffees, name='user_coffees'),
     url(r'^send_order_email/(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})/$', send_order_email, name='send_order_email'),
     url(r'^replicate_order/(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})/$', replicate_order, name='replicate_order'),
+    url(r'^logout/$', logout_view, name='logout'),
+    url(r'^naughty_page/$', naughty_page, name='naughty_page'),
 
     url(r'^createcoffee/$', createCoffee, name='createcoffee'),
     url(r'^editcoffee/(?P<coffee_id>[0-9]+)/$', editCoffee, name='editcoffee'),
